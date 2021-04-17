@@ -41,7 +41,7 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
                     # remove the processed bytes from the stream
                     del stream[0 : idx + 4 + length]
                     # messages with 0x08 on the second spot contains values appear on the OLED display
-                    if(message[1] == 0x08):
+                    if(message[2] == 0x01):
                         print("SpO2: %d PR: %d PI: %1.1f" % (message[3], message[4], message[6] / 10))
                 else:
                     break

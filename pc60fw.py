@@ -5,6 +5,11 @@ import bluepy
 
 stream = bytearray()
 
+if len(sys.argv) == 1:
+    print ("Not enough arguments.")
+    print ("Usage: ./pc60fw.py [Device MAC]")
+    exit()
+
 class MyDelegate(bluepy.btle.DefaultDelegate):
     def __init__(self):
         bluepy.btle.DefaultDelegate.__init__(self)

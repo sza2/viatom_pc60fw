@@ -74,5 +74,10 @@ try:
     while True:
         if pulseoximeter.waitForNotifications(1.0):
             continue
+
+#Handle disconnection gracefully
+except bluepy.btle.BTLEDisconnectError:
+    print ("Pulseoximeter disconnected.")
+
 finally:
     pulseoximeter.disconnect()

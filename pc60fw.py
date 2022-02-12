@@ -64,7 +64,14 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
             if(message[2] == 0x03):
                 print("Battery Level: %d/3" % (message[3]))
 
-pulseoximeter = bluepy.btle.Peripheral(sys.argv[1], "random")
+Connection = False
+while(Connection == False):
+    try:
+        pulseoximeter = bluepy.btle.Peripheral(sys.argv[1], "random")
+        Connection = True
+    except bluepy.btle.BTLEDisconnectError:
+        print ("Connection failed, retrying...")
+
 
 try:
     pulseoximeter.setDelegate(MyDelegate())
